@@ -17,20 +17,6 @@ services:
     networks:
       - postgres_net
 
-  pgadmin:
-    container_name: pgadmin_container
-    image: dpage/pgadmin4
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-fullstack@upc.edu}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-fullstack123}
-    volumes:
-      - pgadmin_vol:/root/.pgadmin
-    ports:
-      - ${PGADMIN_PORT:-5050}:80
-    networks:
-      - postgres_net
-
 networks:
   postgres_net:
     driver: bridge
