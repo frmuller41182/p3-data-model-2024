@@ -29,3 +29,18 @@ TODOS
 1. Start small, set up Prisma and Test out how to deploy a POSTGRES SQL with the docker-compose yaml file. --> DONE 
 2. Test a very simple seed.ts --> DONE with bunx prisma db seed.
 2. Then define the schema for the database with 3 entities
+
+Schema:
+
+TS Scripts:
+
+1. Market Crash
+
+2. Bull Market
+
+3. Seasonal Trend
+
+4. Acquisition
+
+5. Empty DB 
+

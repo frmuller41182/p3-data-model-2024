@@ -35,5 +35,5 @@ const microsoft = await financedb.stock.create({
 });
 
 console.log(
-  `New Stock registered: ${amazon.companyName}, with symbol ${amazon.symbol}`
+  `New Stock registered: ${microsoft.companyName}, with symbol ${microsoft.symbol}`
 );
