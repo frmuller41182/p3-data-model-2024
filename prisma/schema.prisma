@@ -32,8 +32,7 @@ model Stock {
   numEmployees Int
   currentPrice Float
   transactions Transaction[]
-  Portfolio    Portfolio?    @relation(fields: [portfolioId], references: [portfolioId])
-  portfolioId  Int?
+  portfolios   Portfolio[]   @relation("Portfolio@StocksManytoMany")
 }
 
 model Transaction {
@@ -52,7 +51,7 @@ model Portfolio {
   portfolioId Int      @id @default(autoincrement())
   userId      Int
   user        User     @relation(fields: [userId], references: [userId])
-  stocks      Stock[]
   balance     Float
   createdAt   DateTime @default(now())
+  stocks      Stock[]  @relation("Portfolio@StocksManytoMany")
 }
