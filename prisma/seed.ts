@@ -1,39 +1,22 @@
 import { PrismaClient } from "@prisma/client";
+import { getUsers } from "../user";
 
 const financedb = new PrismaClient();
 
-const amazon = await financedb.stock.create({
-  data: {
-    companyName: "Amazon",
-    symbol: "AMZN",
-    currentPrice: 100,
-  },
-});
+const createUsers = async (n: number) => {
+  const users = await getUsers(n);
+  try {
+    for (const user of users) {
+      const data = { name: user.name, alias: user.alias, email: user.email };
+      console.log("Attempting to create user with data:", data);
+      const newUser = await financedb.user.create({
+        data,
+      });
+      console.log("User created");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-console.log(
-  `New Stock registered: ${amazon.companyName}, with symbol ${amazon.symbol}`
-);
-
-const google = await financedb.stock.create({
-  data: {
-    companyName: "Google",
-    symbol: "GOOG",
-    currentPrice: 110,
-  },
-});
-
-console.log(
-  `New Stock registered: ${google.companyName}, with symbol ${google.symbol}`
-);
-
-const microsoft = await financedb.stock.create({
-  data: {
-    companyName: "Microsoft",
-    symbol: "MSFT",
-    currentPrice: 90,
-  },
-});
-
-console.log(
-  `New Stock registered: ${microsoft.companyName}, with symbol ${microsoft.symbol}`
-);
+await createUsers(100);

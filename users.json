@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Gordan",
+        "last": "Gojković"
+      },
+      "location": {
+        "street": {
+          "number": 9410,
+          "name": "Živka Markovića"
+        },
+        "city": "Alibunar",
+        "state": "Central Banat",
+        "country": "Serbia",
+        "postcode": 87618,
+        "coordinates": {
+          "latitude": "64.0770",
+          "longitude": "-9.1653"
+        },
+        "timezone": {
+          "offset": "+4:30",
+          "description": "Kabul"
+        }
+      },
+      "email": "gordan.gojkovic@example.com",
+      "login": {
+        "uuid": "42aff01d-c00f-4af9-a56c-73caf59b562c",
+        "username": "happypeacock539",
+        "password": "frogman",
+        "salt": "Wcb8Q8MA",
+        "md5": "39add003523ced7d1cbb4f84406455d3",
+        "sha1": "67530af50b618ccb157cdccb410c395eba62bdf5",
+        "sha256": "5a7e423e90eb790a374aa8fa49618582d01077ecdb6624d14d6e274610e05b1e"
+      },
+      "dob": {
+        "date": "1956-06-18T20:53:14.097Z",
+        "age": 67
+      },
+      "registered": {
+        "date": "2018-03-05T18:36:33.462Z",
+        "age": 6
+      },
+      "phone": "033-6734-171",
+      "cell": "061-2202-591",
+      "id": {
+        "name": "SID",
+        "value": "936004061"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/65.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/65.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/65.jpg"
+      },
+      "nat": "RS"
+    }
+  ],
+  "info": {
+    "seed": "0e0d073300291644",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}

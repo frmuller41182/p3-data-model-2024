@@ -10,7 +10,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@prisma/client": "5.13.0"
+    "@prisma/client": "5.13.0",
+    "fetch": "^1.1.0"
   },
   "prisma": {
     "seed": "bun prisma/seed.ts"

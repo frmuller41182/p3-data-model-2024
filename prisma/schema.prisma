@@ -33,6 +33,7 @@ model Stock {
   currentPrice Float
   transactions Transaction[]
   portfolios   Portfolio[]   @relation("Portfolio@StocksManytoMany")
+  marketEvents MarketEvent[] @relation("Event@StockManytoMany")
 }
 
 model Transaction {
@@ -54,4 +55,11 @@ model Portfolio {
   balance     Float
   createdAt   DateTime @default(now())
   stocks      Stock[]  @relation("Portfolio@StocksManytoMany")
+}
+
+model MarketEvent {
+  marketEventId  Int      @id @default(autoincrement())
+  eventName      String
+  affectedStocks Stock[]  @relation("Event@StockManytoMany")
+  eventDate      DateTime @default(now())
 }
