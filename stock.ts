@@ -24,6 +24,8 @@ We will tackle the ones with relations afterwards.
 
  */
 
+import { writeFile } from "fs/promises";
+
 export class Stock {
   public symbol: string;
   public companyName: string;
@@ -51,12 +53,12 @@ export class Stock {
 
 const testData = async (n: Number) => {
   const response = await fetch(
-    `https://financialmodelingprep.com/api/v3/search?query=AA&limit=${n}&apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
+    `https://financialmodelingprep.com/api/v3/search?&query=AA&limit=${n}&apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
   );
   const results = (await response.json()) as { results: any[] };
   const stocks: Array<Stock> = [];
   console.log(results);
-  for (const result of results.results) {
+  for (const result of results) {
     const companyInfo = (await (
       await fetch(
         `https://financialmodelingprep.com/api/v3/profile/${result.symbol}?apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
@@ -66,13 +68,15 @@ const testData = async (n: Number) => {
       new Stock(
         result.symbol,
         result.name,
-        result.price,
+        companyInfo[0].price,
         companyInfo[0].industry,
         companyInfo[0].country,
         companyInfo[0].fullTimeEmployees
       )
     );
   }
+  console.log(stocks);
+  await writeFile("stocks.json", JSON.stringify(stocks));
 };
 
-testData(5);
+testData(100);
