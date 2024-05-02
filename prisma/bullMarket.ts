@@ -5,14 +5,18 @@ log some interesting insights into the console as well probably.
 
 import { PrismaClient } from "@prisma/client";
 
+export const getRandomNumber = (min: number, max: number) => {
+  const randomNumber = Math.random() * (max - min) + min;
+  return randomNumber;
+};
+
 const financedb = new PrismaClient();
 
 const bullMarket = async () => {
-  const stocks = await financedb.stock.findMany();
+  const numStocksAfected = getRandomNumber(5, 60);
+  const stocks = await financedb.stock.findMany({ take: numStocksAfected });
   for (const stock of stocks) {
-    const minIncrease = 0.3;
-    const maxIncrease = 0.7;
-    const priceDrop = Math.random() * (maxIncrease - minIncrease) + minIncrease;
+    const priceDrop = getRandomNumber(0.3, 0.7);
     console.log(`price drop: ${priceDrop * 100}`);
     const newPrice = (
       stock.currentPrice +
@@ -30,6 +34,15 @@ const bullMarket = async () => {
       data: { currentPrice: parseFloat(newPrice) },
     });
   }
+  console.log("Bull market simulation complete!");
+  await financedb.marketEvent.create({
+    data: {
+      eventName: "BullMarket",
+      affectedStocks: {
+        connect: stocks.map((stock) => ({ stockId: stock.stockId })),
+      },
+    },
+  });
 };
 
 await bullMarket();

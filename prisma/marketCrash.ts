@@ -30,6 +30,14 @@ const marketCrash = async () => {
       data: { currentPrice: parseFloat(newPrice) },
     });
   }
+  console.log("Market Crash simulation complete!");
+  await financedb.marketEvent.create({
+    data: {
+      eventName: "Market Crash",
+      affectedStocks: {
+        connect: stocks.map((stock) => ({ stockId: stock.stockId })),
+      },
+    },
+  });
 };
-
 await marketCrash();

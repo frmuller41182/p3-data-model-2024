@@ -34,7 +34,8 @@ Schema:
 
 TS Scripts:
 
-Add console loging and potentially some 
+Add console loging and potentially some information. For a summary of the seed ts execution (how many records for each table, and industries of companies).
+We need to make it so the users know how to operate the scripts and what options do they have.
 
 1. Market Crash --> DONE
 
@@ -43,7 +44,7 @@ Add console loging and potentially some
 
 2. Bull Market --> DONE
 
-3. Industry specific.
+3. Indsutry ShiftTide. --> DONE
 
 4. Acquisition
 
