@@ -4,6 +4,8 @@ import fs from "fs";
 
 const financedb = new PrismaClient();
 
+//Adding seed data to User entity
+
 const createUsers = async (n: number) => {
   const users = await getUsers(n);
   try {
@@ -20,6 +22,8 @@ const createUsers = async (n: number) => {
   }
 };
 await createUsers(100);
+
+// Adding seed data to Stock entity
 
 const createStocks = async () => {
   console.log("Creating stocks");
@@ -44,3 +48,70 @@ const createStocks = async () => {
 };
 
 await createStocks();
+
+//Adding Seed data to Transaction entity
+
+const createTransactions = async () => {
+  const users = await financedb.user.findMany();
+  const stocks = await financedb.stock.findMany();
+  console.log("Creating transactions!!");
+  for (const user of users) {
+    const numberOfTransactions = Math.floor(Math.random() * 10) + 1;
+    for (let i = 0; i < numberOfTransactions; i++) {
+      const stock = stocks[Math.floor(Math.random() * stocks.length)];
+      const quantity = Math.floor(Math.random() * 100) + 1;
+      const type = Math.random() < 0.5 ? "BUY" : "SELL";
+      console.log(
+        `Alright! Creating transaction for ${user.name} with ${stock.companyName}. They will ${type} ${quantity} stocks at ${stock.currentPrice}`
+      );
+      await financedb.transaction.create({
+        data: {
+          priceAtTransaction: stock.currentPrice,
+          userId: user.userId,
+          stockId: stock.stockId,
+          quantity,
+          type,
+        },
+      });
+    }
+  }
+};
+
+await createTransactions();
+
+//Adding Seed data to Portfolio entity
+
+const createPortfolios = async () => {
+  const users = await financedb.user.findMany();
+  const stocks = await financedb.stock.findMany();
+  console.log("Creating portfolios!!");
+  for (const user of users) {
+    const numberOfPortfolios = Math.floor(Math.random() * 3) + 1;
+    for (let i = 0; i < numberOfPortfolios; i++) {
+      const stocksInPortfolio = stocks.slice(
+        0,
+        Math.floor(Math.random() * stocks.length)
+      );
+      let balance = 0;
+      stocksInPortfolio.forEach((stock) => {
+        balance += stock.currentPrice;
+      });
+      console.log(
+        `Alright! Creating portfolio for ${user.name} with ${stocksInPortfolio.length} stocks and total balance of ${balance} USD.`
+      );
+      await financedb.portfolio.create({
+        data: {
+          userId: user.userId,
+          stocks: {
+            connect: stocksInPortfolio.map((stock) => ({
+              stockId: stock.stockId,
+            })),
+          },
+          balance,
+        },
+      });
+    }
+  }
+};
+
+await createPortfolios();

@@ -34,13 +34,18 @@ Schema:
 
 TS Scripts:
 
-1. Market Crash
+Add console loging and potentially some 
 
-2. Bull Market
+1. Market Crash --> DONE
 
-3. Seasonal Trend
+- All stocks get their current price reduced between 30% and 70%.
+- Show some insights on the impact/consequences. 
+
+2. Bull Market --> DONE
+
+3. Industry specific.
 
 4. Acquisition
 
-5. Empty DB 
+5. Empty DB --> DONE!
 
