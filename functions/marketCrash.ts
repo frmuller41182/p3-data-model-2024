@@ -12,7 +12,6 @@ export const marketCrash = async () => {
   const stocks = await financedb.stock.findMany();
   for (const stock of stocks) {
     const priceDrop = getRandomNumber(0.3, 0.7);
-    console.log(`price drop: ${priceDrop * 100}`);
     const newPrice = (
       stock.currentPrice -
       stock.currentPrice * priceDrop
@@ -22,7 +21,9 @@ export const marketCrash = async () => {
         stock.symbol
       } has suffered from the market crash!! Their share price droped from ${stock.currentPrice.toFixed(
         2
-      )} to ${newPrice} USD.`
+      )} to ${newPrice} USD. This represents a decrease of ${priceDrop.toFixed(
+        2
+      )}%.`
     );
     await financedb.stock.update({
       where: { stockId: stock.stockId },

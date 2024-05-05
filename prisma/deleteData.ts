@@ -8,6 +8,7 @@ const deleteAllData = async () => {
   await financedb.marketEvent.deleteMany();
   await financedb.user.deleteMany();
   await financedb.stock.deleteMany();
+  console.log("All data deleted");
 };
 
 await deleteAllData();

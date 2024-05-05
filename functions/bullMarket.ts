@@ -12,18 +12,19 @@ export const bullMarket = async () => {
   const numStocksAfected = getRandomNumber(5, 60);
   const stocks = await financedb.stock.findMany({ take: numStocksAfected });
   for (const stock of stocks) {
-    const priceDrop = getRandomNumber(0.3, 0.7);
-    console.log(`price drop: ${priceDrop * 100}`);
+    const priceIncrease = getRandomNumber(0.3, 0.7);
     const newPrice = (
       stock.currentPrice +
-      stock.currentPrice * priceDrop
+      stock.currentPrice * priceIncrease
     ).toFixed(2);
     console.log(
       `Stock ${
         stock.symbol
       } has benefited from the bullish market rush!! Their share price rosed from ${stock.currentPrice.toFixed(
         2
-      )} to ${newPrice} USD.`
+      )} to ${newPrice} USD. This represents an increase of ${priceIncrease.toFixed(
+        2
+      )}%.`
     );
     await financedb.stock.update({
       where: { stockId: stock.stockId },

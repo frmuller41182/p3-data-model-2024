@@ -23,13 +23,14 @@ const acquisition = async (buySide: string, sellSide: string) => {
   const sellSideCompany = await financedb.stock.findFirst({
     where: { symbol: sellSide },
   });
-  console.log(`Well well well.... it seems like negotiations between ${buySideCompany?.companyName}
-    and ${sellSideCompany?.companyName} reached a conclusion!!! ${buySideCompany?.companyName} will be buying ${sellSideCompany?.companyName},
-    will the regulators allow it or will they ban it due to antitrust concerns?`);
-  console.log(`The ${buySideCompany?.companyName} will now absorb ${Math.round(
-    sellSideCompany?.numEmployees! * 0.6
-  )}
-     employees from the ${sellSideCompany?.companyName} company.`);
+  console.log(
+    `Well well well.... it seems like negotiations between ${buySideCompany?.companyName} and ${sellSideCompany?.companyName} reached a conclusion!!! ${buySideCompany?.companyName} will be buying ${sellSideCompany?.companyName}, will the regulators allow it or will they ban it due to antitrust concerns?`
+  );
+  console.log(
+    `The ${buySideCompany?.companyName} will now absorb ${Math.round(
+      sellSideCompany?.numEmployees! * 0.6
+    )} employees from the ${sellSideCompany?.companyName} company.`
+  );
   await financedb.stock.update({
     where: { stockId: buySideCompany?.stockId! },
     data: {
