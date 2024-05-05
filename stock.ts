@@ -41,23 +41,24 @@ const testData = async (n: Number) => {
   const response = await fetch(
     `https://financialmodelingprep.com/api/v3/search?&query=AA&limit=${n}&apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
   );
-  const results = (await response.json()) as { results: any[] };
+  const results = await response.json();
   const stocks: Array<Stock> = [];
   console.log(results);
-  for (const result of results) {
-    const companyInfo = (await (
+  for (const result of [...results]) {
+    const companyInfo = await (
       await fetch(
         `https://financialmodelingprep.com/api/v3/profile/${result.symbol}?apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
       )
-    ).json()) as { companyInfo: any[] };
+    ).json();
+    const companyInfoObject = companyInfo[0];
     stocks.push(
       new Stock(
         result.symbol,
         result.name,
-        companyInfo[0].price,
-        companyInfo[0].industry,
-        companyInfo[0].country,
-        companyInfo[0].fullTimeEmployees
+        companyInfoObject.price,
+        companyInfoObject.industry,
+        companyInfoObject.country,
+        companyInfoObject.fullTimeEmployees
       )
     );
   }

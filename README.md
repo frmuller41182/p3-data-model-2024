@@ -68,4 +68,33 @@ You can then open Prisma Studio in you web browser with the output URL.
 
 This project includes scripts to simulate playful scenarios with the data generated in the `seed` command. Below are the explanations on what each of them do, as well as instructions on how to execute them:
 
-### marketManiuplation
+### Market Manipulation
+
+Ever wondered what it feels like to hold the power of the markets in your hands? Our Market Manipulation Script lets you play the role of a market wizard, imposing your will in the financial market this DB represents with just one command!
+
+#### How does this work?
+
+With this script you can either invoke a `Bull` or `Bear` event. The first will simulate a bull market scenario in which a random number of the companies listed will get a random yet generous increase in their stock price. The second one will simulate a market crash, which as you can guess, implies quite the opposite - a random number of companies listed gettig a random yet harsh decrease of their stock price.
+
+To invoke your chosen scenario run the command below. You can specify if you want a `Bull` or `Bear` event by adding that word as a parameter:
+
+```
+$ bun manipulate-market -- "Bull"
+$ bun manipulate-market -- "Bear"
+```
+
+If no parameter is provided, a random one will be selected.
+
+### Corporate Carousel Script
+
+Hold on to your seats, corporate adventurers! It's time to spin the Corporate Carousel and watch as employees hop on and off, riding from one industry to another in a thrilling exchange of talents and ties.
+
+Simulate some dramatic scenarios in which a large proportion of the workforce of one indsutry, jumps off to work for companies in another industry. This script will make 30 to 60% of employees change their jobs! To run it execute the command below:
+
+```
+$bun industry-shift
+```
+
+The two affected industries will be selected at random, but you will see feedback on what happened in the terminal!
+
+### M&A (although just acquisitions)
