@@ -16,6 +16,7 @@
     "seed": "bun prisma/seed.ts"
   },
   "scripts": {
-    "deleteAll": "bun prisma/deleteData.ts"
+    "deleteAll": "bun prisma/deleteData.ts",
+    "acquisition": "bun prisma/acquisition.ts"
   }
 }

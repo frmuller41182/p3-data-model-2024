@@ -45,7 +45,7 @@ model Transaction {
   userId             Int
   user               User     @relation(fields: [userId], references: [userId])
   stockId            Int
-  stock              Stock    @relation(fields: [stockId], references: [stockId])
+  stock              Stock    @relation(fields: [stockId], references: [stockId], onDelete: Cascade)
 }
 
 model Portfolio {
