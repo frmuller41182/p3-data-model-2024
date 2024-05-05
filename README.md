@@ -97,4 +97,25 @@ $bun industry-shift
 
 The two affected industries will be selected at random, but you will see feedback on what happened in the terminal!
 
-### M&A (although just acquisitions)
+### The Acquisition Simulator
+
+Welcome to the Acquisition Simulator. We avoid using the "Merge & Acquisition Simulator" name because, let's face it, mergers don't actually exist - only acquisitions reign supreme! 💰 This scrip will allow you to simulate one company of your chosing buying another one. the acquiring company will:
+
+1. Absorb 60% of the acquired company's employees.
+2. Increase its stock price by a whopping 30% (because why not?).
+
+The acquired company will (unfrotunately) be deleted from the listed companies. But don't worry, we'll make sure to create a fancy "Acquisition" event to commemorate this momentous occasion. To run the Acquisition Simulator you can run the command below and provide the two company's stock SYMBOL as the parameters. The first stock symbol will be the acquiring company, and the second one will be the acquired one:
+
+```
+$bun acquisition -- "AMZN GOOG"
+```
+
+For example in the above command you would simulate Amazon buying Google. If no arguments are provided, the companies will be selected at random among the existing stocks.
+
+### Delete All Data
+
+We also want to give you flexibility to do a fresh restart!! Run the command below to delete all data from the database:
+
+```
+$ bun deleteAll
+```
