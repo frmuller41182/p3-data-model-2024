@@ -4,15 +4,14 @@ log some interesting insights into the console as well probably.
 */
 
 import { PrismaClient } from "@prisma/client";
+import { getRandomNumber } from "./getRandomNumber";
 
 const financedb = new PrismaClient();
 
-const marketCrash = async () => {
+export const marketCrash = async () => {
   const stocks = await financedb.stock.findMany();
   for (const stock of stocks) {
-    const minDrop = 0.3;
-    const maxDrop = 0.7;
-    const priceDrop = Math.random() * (maxDrop - minDrop) + minDrop;
+    const priceDrop = getRandomNumber(0.3, 0.7);
     console.log(`price drop: ${priceDrop * 100}`);
     const newPrice = (
       stock.currentPrice -
@@ -40,4 +39,3 @@ const marketCrash = async () => {
     },
   });
 };
-await marketCrash();

@@ -4,15 +4,11 @@ log some interesting insights into the console as well probably.
 */
 
 import { PrismaClient } from "@prisma/client";
+import { getRandomNumber } from "./getRandomNumber";
 
-export const getRandomNumber = (min: number, max: number) => {
-  const randomNumber = Math.random() * (max - min) + min;
-  return randomNumber;
-};
+export const financedb = new PrismaClient();
 
-const financedb = new PrismaClient();
-
-const bullMarket = async () => {
+export const bullMarket = async () => {
   const numStocksAfected = getRandomNumber(5, 60);
   const stocks = await financedb.stock.findMany({ take: numStocksAfected });
   for (const stock of stocks) {
@@ -44,5 +40,3 @@ const bullMarket = async () => {
     },
   });
 };
-
-await bullMarket();
