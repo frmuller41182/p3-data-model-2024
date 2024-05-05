@@ -18,6 +18,8 @@
   },
   "scripts": {
     "deleteAll": "bun prisma/deleteData.ts",
-    "acquisition": "bun prisma/acquisition.ts"
+    "acquisition": "bun prisma/acquisition.ts",
+    "industry-shift": "bun prisma/industryShiftTide.ts",
+    "manipulate-market": "bun prisma/marketManipulation.ts"
   }
 }

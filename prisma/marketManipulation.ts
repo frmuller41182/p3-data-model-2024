@@ -5,11 +5,6 @@ const args = process.argv.slice(2);
 let influenceType = args[0];
 
 async function main() {
-  //   if (!influenceType) {
-  //     const influenceOptions = ["Bear", "Market"];
-  //     const index = Math.floor(Math.random() * influenceOptions.length);
-  //     let randominfluenceType = influenceOptions[index];
-  //   }
   if (influenceType === "Bear") {
     await marketCrash();
   } else if (influenceType === "Bull") {
