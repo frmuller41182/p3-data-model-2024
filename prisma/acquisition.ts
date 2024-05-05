@@ -61,14 +61,28 @@ const acquisition = async (buySide: string, sellSide: string) => {
 //Let's level it up! Allowing the users to parse the arguments they want when calling the scripts.
 
 const args = process.argv.slice(2);
-if (args.length < 2) {
-  console.error(
-    `Hey there! You need to provide both a buying and a selling company name. Otherwise, don't include any parameters and the program will pick some at random.`
-  );
-  process.exit(1);
+let buySide = args[0];
+let sellSide = args[1];
+
+const getRandomStockSymbol = async () => {
+  const stocksRandom = await financedb.stock.findMany();
+  const randomIndex = Math.floor(Math.random() * stocksRandom.length);
+  // Return the random object from the array
+  return stocksRandom[randomIndex].symbol;
+};
+
+async function main() {
+  if (!buySide) {
+    buySide = await getRandomStockSymbol();
+  }
+  if (!sellSide) {
+    sellSide = await getRandomStockSymbol();
+  }
+  if (buySide && sellSide) {
+    await acquisition(buySide, sellSide).catch(console.error);
+  } else {
+    console.error("Invalid arguments");
+  }
 }
 
-const buySide = args[0];
-const sellSide = args[1];
-
-await acquisition(buySide, sellSide).catch(console.error);
+await main();

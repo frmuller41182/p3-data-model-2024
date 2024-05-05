@@ -22,7 +22,8 @@ const employeeMigration = async (fromIndustry: string, toIndustry: string) => {
   });
   for (let i = 0; i < fromIndustryCompanies.length; i++) {
     const fromCompany = fromIndustryCompanies[i];
-    const toCompany = toIndustryCompanies[i];
+    const randomIndex = Math.floor(Math.random() * toIndustryCompanies.length);
+    const toCompany = toIndustryCompanies[randomIndex];
     const employeesShifted = Math.floor(
       fromCompany.numEmployees -
         fromCompany.numEmployees * getRandomNumber(0.3, 0.6)
@@ -51,4 +52,21 @@ const employeeMigration = async (fromIndustry: string, toIndustry: string) => {
   });
 };
 
-await employeeMigration("Pharmaceuticals", "Software");
+const getRandomIndustry = async () => {
+  const allStocks = await financedb.stock.findMany();
+  const randomIndex = Math.floor(Math.random() * allStocks.length);
+  // Return the random object from the array
+  return allStocks[randomIndex].industry;
+};
+
+async function main() {
+  const fromIndustry = await getRandomIndustry();
+  let toIndustry = await getRandomIndustry();
+  if (toIndustry === fromIndustry) {
+    toIndustry = await getRandomIndustry();
+    return;
+  }
+  await employeeMigration(fromIndustry, toIndustry).catch(console.error);
+}
+
+await main().catch(console.error);

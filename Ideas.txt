@@ -46,7 +46,7 @@ We need to make it so the users know how to operate the scripts and what options
 
 3. Indsutry ShiftTide. --> DONE
 
-4. Acquisition
+4. Acquisition --> DONE.
 
 5. Empty DB --> DONE!
 

@@ -24,14 +24,11 @@ We will tackle the ones with relations afterwards.
  */
 
 export class User {
-  public name: string;
-  public alias: string;
-  public email: string;
-  constructor(name: string, alias: string, email: string) {
-    this.name = name;
-    this.alias = alias;
-    this.email = email;
-  }
+  constructor(
+    public name: string,
+    public alias: string,
+    public email: string
+  ) {}
 }
 
 export const getUsers = async (n: Number) => {

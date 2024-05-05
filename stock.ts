@@ -27,28 +27,14 @@ We will tackle the ones with relations afterwards.
 import { writeFile } from "fs/promises";
 
 export class Stock {
-  public symbol: string;
-  public companyName: string;
-  public industry?: string;
-  public headQuarters?: string;
-  public numEmployees?: number;
-  public currentPrice: number;
-
   constructor(
-    symbol: string,
-    companyName: string,
-    currentPrice: number,
-    industry?: string,
-    headQuarters?: string,
-    numEmployees?: number
-  ) {
-    this.symbol = symbol;
-    this.companyName = companyName;
-    this.industry = industry;
-    this.headQuarters = headQuarters;
-    this.numEmployees = numEmployees;
-    this.currentPrice = currentPrice;
-  }
+    public symbol: string,
+    public companyName: string,
+    public currentPrice: number,
+    public industry?: string,
+    public headQuarters?: string,
+    public numEmployees?: number
+  ) {}
 }
 
 const testData = async (n: Number) => {
@@ -76,7 +62,7 @@ const testData = async (n: Number) => {
     );
   }
   console.log(stocks);
-  await writeFile("stocks.json", JSON.stringify(stocks));
+  await writeFile("stocks_fromAPI.json", JSON.stringify(stocks));
 };
 
-testData(100);
+testData(50);
