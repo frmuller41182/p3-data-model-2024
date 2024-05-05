@@ -22,6 +22,8 @@ model Stock {
 First we populate the independent fields of the entities (i.e., the ones which do not have any relations). 
 We will tackle the ones with relations afterwards.
 
+NOTE FOR PAU: I tried to populate the DB with multiple stocks using this financial model APIs, however there was a limit to their FREE Tier. So what I did was use the APIs in different day, write the results in a stocks.json file, and then read the results in the stocks.json file when populating the DB!
+
  */
 
 import { writeFile } from "fs/promises";
@@ -39,7 +41,7 @@ export class Stock {
 
 const testData = async (n: Number) => {
   const response = await fetch(
-    `https://financialmodelingprep.com/api/v3/search?&query=AA&limit=${n}&apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
+    `https://financialmodelingprep.com/api/v3/search?&query=AA&limit=${n}&apikey=NA`
   );
   const results = await response.json();
   const stocks: Array<Stock> = [];
@@ -47,7 +49,7 @@ const testData = async (n: Number) => {
   for (const result of [...results]) {
     const companyInfo = await (
       await fetch(
-        `https://financialmodelingprep.com/api/v3/profile/${result.symbol}?apikey=YDfBNhrA06arKawmBGoNInbOs6J8VgXX`
+        `https://financialmodelingprep.com/api/v3/profile/${result.symbol}?apikey=NA`
       )
     ).json();
     const companyInfoObject = companyInfo[0];

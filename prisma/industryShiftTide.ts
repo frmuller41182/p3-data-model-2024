@@ -2,9 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { getRandomNumber } from "../functions/getRandomNumber";
 /*
 This script will simulate a shift in workforce between the two industries specified in the function paramaters. It will subtract a random percentage 
-of employees from companies in the fromIndustry and add a random percentage of employees to companies in the toIndustry. Of course, this will also
-impact the stock price of the companies. It will decrease the price from the fromIndustry by a random percentage and increase the price for the 
-companies winning employees over. 
+of employees from companies in the fromIndustry and add a random percentage of employees to companies in the toIndustry.
 */
 
 const financedb = new PrismaClient();

@@ -10,7 +10,7 @@ Now, the acquiring company will:
 1. Absorb 60% of the sellSide employees.
 2. Have it's stock price increased by 30%.
 
-The acquired company will of course be removed from the stocks table. Since we have set up an "onDelet" behavior in the relation between stocks and transactions,
+The acquired company will of course be removed from the stocks table. Since we have set up an "onDelete" behavior in the relation between stocks and transactions,
 the transactions of the acquired company will also be removed.
 */
 

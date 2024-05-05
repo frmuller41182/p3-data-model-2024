@@ -12,7 +12,7 @@ const createUsers = async (n: number) => {
     for (const user of users) {
       const data = { name: user.name, alias: user.alias, email: user.email };
       console.log("Attempting to create user with data:", data);
-      const newUser = await financedb.user.create({
+      await financedb.user.create({
         data,
       });
       console.log("User created");

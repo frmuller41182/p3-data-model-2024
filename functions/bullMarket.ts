@@ -1,6 +1,5 @@
 /* 
-In this script I will simulate a bull market, and update the current price of all stocks to be between 30 and 70% more. After succeeding on this I can 
-log some interesting insights into the console as well probably.
+In this script I will simulate a bull market, and update the current price of all stocks to be between 30 and 70% more.
 */
 
 import { PrismaClient } from "@prisma/client";
